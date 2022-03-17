@@ -139,17 +139,19 @@ export default {
         const store = useStore();
         const router = useRouter();
 
-        function logout(){
-            store.commit('logout')
-            router.push({
-                name: 'Login'
-            })
+        function logout() {
+            store.dispatch('logout')
+                .then(() => {
+                    router.push({
+                        name: 'Login'
+                    })
+                })
         }
 
         return {
             user: computed(() => store.state.user.data),
             navigation,
-            logout
+            logout,
         }
     },
 }
