@@ -71,5 +71,11 @@ import store from "../store";
 
 const surveys = computed(() => store.state.surveys)
 
+function deleteSurvey(survey) {
+    if (confirm(`Are you sure you want to delete this survey?`)) {
+        // delete
+    }
+}
+
 </script>
 
