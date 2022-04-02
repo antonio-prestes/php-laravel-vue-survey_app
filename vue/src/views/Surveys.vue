@@ -5,10 +5,10 @@
                 <h1 class="text-3xl font-bold text-gray-900">Surveys</h1>
                 <router-link
                     :to="{ name: 'SurveyCreate' }"
-                    class="py -2 px-3 text-white bg-emerald-500 rounded-md hover:bg-emerald-600"
+                    class="py-2 px-3 text-white bg-emerald-500 rounded-md hover:bg-emerald-600"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg"
-                         class="h-4 w-4 -mt-1 inline-block"
+                         class="h-4 w-4 inline-block"
                          fill="none"
                          viewBox="0 0 24 24"
                          stroke="currentColor"

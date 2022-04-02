@@ -7,7 +7,6 @@
                 </h1>
             </div>
         </template>
-        <pre>{{ model }}</pre>
         <form @submit.prevent="saveSurvey" class="animated-fade-in-down">
             <div class="shadow sm:rounded-md sm:overflow-hidden px-5">
                 <!-- Survey Fields -->
@@ -67,7 +66,7 @@
                             id="title"
                             v-model="model.title"
                             autocomplete="survey_title"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            class="mt-1 p-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md"
                         />
                     </div>
                     <!--/ Title -->
@@ -84,7 +83,7 @@
                   rows="3"
                   v-model="model.description"
                   autocomplete="survey_description"
-                  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                  class="shadow-sm pl-2 py-1 focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                   placeholder="Describe your survey"
               />
                         </div>
@@ -103,7 +102,7 @@
                             name="expire_date"
                             id="expire_date"
                             v-model="model.expire_date"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                            class="mt-1 p-2  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-300 rounded-md"
                         />
                     </div>
                     <!--/ Expire Date -->
@@ -129,6 +128,40 @@
                 </div>
                 <!--/ Survey Fields -->
 
+                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    <h3 class="text-2x1 font-semibold flex items-center justify-between">
+                        Questions
+
+                        <button
+                            type="button"
+                            @click="addQuestion()"
+                            class="flex items-center text-sm py-2 px-2 rounded-md text-white bg-gray-600 hover:bg-gray-700 justify-between"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                 class="h-3 w-3 mr-2 inline-block"
+                                 fill="none"
+                                 viewBox="0 0 20 20"
+                                 stroke="currentColor"
+                                 stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+                            </svg>
+                            Add Question
+                        </button>
+                    </h3>
+                    <div v-if="!model.questions.length" class="text-center text-gray-600">
+                        You don't have any question created
+                    </div>
+                    <div v-for="(question, index) in model.questions" :key="question.id">
+                        <QuestionEditor
+                            :question="question"
+                            :index="index"
+                            @change="QuestionChange()"
+                            @addQuestion="addQuestion()"
+                            @deleteQuestion="deleteQuestion()"
+                        />
+                    </div>
+                </div>
+
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <button
                         type="submit"
@@ -147,7 +180,7 @@
                         bg-indigo-600
                         hover:bg-indigo-700
                         focus:outline-none
-                          focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Save
                     </button>
                 </div>
@@ -159,6 +192,7 @@
 
 <script setup>
 import PageComponent from "../components/PageComponent.vue";
+import QuestionEditor from "../components/editor/QuestionEditor.vue"
 import {ref} from "vue";
 import {useRoute} from "vue-router";
 import store from "../store";
