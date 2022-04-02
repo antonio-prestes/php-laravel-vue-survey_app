@@ -129,13 +129,13 @@
                 <!--/ Survey Fields -->
 
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <h3 class="text-2x1 font-semibold flex items-center justify-between">
+                    <h3 class="text-2xl font-semibold flex items-center justify-between">
                         Questions
 
                         <button
                             type="button"
                             @click="addQuestion()"
-                            class="flex items-center text-sm py-2 px-2 rounded-md text-white bg-gray-600 hover:bg-gray-700 justify-between"
+                            class="flex items-center text-base py-2 px-2 rounded-md text-white bg-gray-600 hover:bg-gray-700 justify-between"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  class="h-3 w-3 mr-2 inline-block"
