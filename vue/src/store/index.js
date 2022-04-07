@@ -10,9 +10,9 @@ const tmpSurveys = [
         image:
             "https://images.unsplash.com/photo-1638913971789-667874197280?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
         description: "Lorem impsun loren impsun lorenimpsun lo renmipsun",
-        created_at: "2022-03-16 00:00:00",
-        updated_at: "2022-03-16 00:00:00",
-        expire_date: "2022-03-17 00:00:00",
+        created_at: "2022-03-16",
+        updated_at: "2022-03-16",
+        expire_date: "2022-03-17",
         questions: [
             {
                 id: 1,
@@ -86,9 +86,9 @@ const tmpSurveys = [
         image:
             "https://images.unsplash.com/photo-1638913971789-667874197280?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80",
         description: "Lorem impsun loren impsun lorenimpsun lo renmipsun",
-        created_at: "2022-03-16 00:00:00",
-        updated_at: "2022-03-16 00:00:00",
-        expire_date: "2022-03-17 00:00:00",
+        created_at: "2022-03-16",
+        updated_at: "2022-03-16",
+        expire_date: "2022-03-17",
         questions: [
             {
                 id: 1,
