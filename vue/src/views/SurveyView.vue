@@ -7,7 +7,7 @@
                 </h1>
             </div>
         </template>
-        <form @submit.prevent="saveSurvey" class="animated-fade-in-down">
+        <form @submit.prevent="saveSurvey()" class="animated-fade-in-down">
             <div class="shadow sm:rounded-md sm:overflow-hidden px-5">
                 <!-- Survey Fields -->
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -195,10 +195,12 @@ import PageComponent from "../components/PageComponent.vue";
 import QuestionEditor from "../components/editor/QuestionEditor.vue"
 import {v4 as uuidv4} from "uuid"
 import {ref} from "vue";
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import store from "../store";
 
 const route = useRoute();
+
+const router = useRouter();
 
 let model = ref({
     title: "",
@@ -237,6 +239,15 @@ function questionChange(question) {
             return JSON.parse(JSON.stringify(question))
         }
         return q
+    })
+}
+
+function saveSurvey() {
+    store.dispatch("saveSurvey", model.value).then(({data}) => {
+        router.push({
+            name: "SurveyView",
+            params: {id: data.data.id},
+        })
     })
 }
 

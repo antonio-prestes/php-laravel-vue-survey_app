@@ -25,11 +25,11 @@ class SurveyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\StoreSurveyRequest $request
-     * @return \Illuminate\Http\Response
+     * @return SurveyResource
      */
     public function store(StoreSurveyRequest $request)
     {
-        $result = Survey::create($request->validate());
+        $result = Survey::create($request->validated());
         return new SurveyResource($result);
     }
 
@@ -39,8 +39,13 @@ class SurveyController extends Controller
      * @param \App\Models\Survey $survey
      * @return \Illuminate\Http\Response
      */
-    public function show(Survey $survey)
+    public function show(Survey $survey, Request $request)
     {
+        $user = $request->user();
+        if ($user->id !== $survey->user_id){
+            return abort(403,'Unauthorized action');
+        }
+
         return new SurveyResource($survey);
     }
 
@@ -53,7 +58,9 @@ class SurveyController extends Controller
      */
     public function update(UpdateSurveyRequest $request, Survey $survey)
     {
-        //
+        $survey->update($request->validated());
+
+        return new SurveyResource($survey);
     }
 
     /**
@@ -62,8 +69,15 @@ class SurveyController extends Controller
      * @param \App\Models\Survey $survey
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Survey $survey)
+    public function destroy(Survey $survey, Request $request)
     {
-        //
+        $user = $request->user();
+        if ($user->id !== $survey->user_id){
+            return abort(403,'Unauthorized action');
+        }
+
+        $survey->delete();
+
+        return response('', 204);
     }
 }
